@@ -126,7 +126,7 @@ time will always increment, never decrement, even if the system clock
 is adjusted.
 
 On Linux, this will use a monotonic second counter that is independent
-of the time-of-day clock.  This allows resonably accurate time
+of the time-of-day clock.  This allows reasonably accurate time
 measurements independent of the system clock being changed.
 
 On non-Linux hosts, this will simulate a monotonic second counter by
