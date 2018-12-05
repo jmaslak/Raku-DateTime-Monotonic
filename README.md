@@ -25,7 +25,7 @@ DateTime::Monotonic is A Never-Decreasing Time-Elapsed Counter.
 
 This means that for any given instance of `DateTime::Monotonic`, the time will always increment, never decrement, even if the system clock is adjusted.
 
-On Linux, this will use a monotonic second counter that is independent of the time-of-day clock. This allows resonably accurate time measurements independent of the system clock being changed.
+On Linux, this will use a monotonic second counter that is independent of the time-of-day clock. This allows reasonably accurate time measurements independent of the system clock being changed.
 
 On non-Linux hosts, this will simulate a monotonic second counter by treating negative time shifts between successive calls to `seconds` as if no time elapsed. It will continue to be impacted by time shifts forward.
 
@@ -52,6 +52,8 @@ On the first call for an instance of `DateTime::Monotonic`, will return "time ze
 On Linux systems, this will provide reasonably accurate time regardless of system clock adjustement.
 
 On Non-Linux systems, this will provide an always-incrementing number which will not be accurate with adjustments. If the time-of-day clock would indicate time went backwards between a `seconds` call and the previous `seconds` call, this method will return the previous result (I.E. the number returned will be the same as if no time elapsed between calls). If time is adjusted forward between calls, this will return a value that appears to have caused more time to elapse than actually has elapsed - but it will always be in a forward direction.
+
+This method is thread safe.
 
 BUGS
 ====
