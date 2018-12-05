@@ -6,9 +6,37 @@ use Test;
 # All Rights Reserved - See License
 #
 
-use DateTime::Monotonic;
+subtest 'Procedural Basic usage', {
+    use DateTime::Monotonic :ALL;
 
-subtest 'Basic usage', {
+    my $start     = monotonic-seconds;
+    my $start-int = monotonic-whole-seconds;
+    sleep 1;
+    my $end       = monotonic-seconds;
+    my $end-int   = monotonic-whole-seconds;
+
+    is $start, 0, "Start time correct";
+    is $start-int, 0, "Start-int time correct";
+    ok $start ~~ Numeric, "Start time is proper type";
+    ok $start-int ~~ Int, "Start-int time is proper type";
+    is $end.defined, True, "End time defined";
+    is $end-int.defined, True, "End-int time defined";
+    ok $end ~~ Numeric, "End time is proper type";
+    ok $end-int ~~ Int, "End-int time is proper type";
+
+    note "# START: $start / $start-int";
+    note "# END  : $end / $end-int";
+
+    ok ($end - $start)         ≥ 1,  "Time (numeric) moves forward";
+    ok ($end-int - $start-int) ≥ 1,  "Time (whole) moves forward";
+    ok ($end - $start)         ≤ 60, "Time (numeric) doesn't move forward too much";
+    ok ($end-int - $start-int) ≤ 60, "Time (whole) doesn't move forward too much";
+    done-testing;
+}
+
+subtest 'OO Basic usage', {
+    use DateTime::Monotonic;
+
     my $time = DateTime::Monotonic.new;
     ok $time.defined, "Time object defined";
     ok $time ~~ DateTime::Monotonic, "Time object is proper type";
@@ -36,6 +64,8 @@ subtest 'Basic usage', {
 }
 
 subtest 'Syscall', {
+    use DateTime::Monotonic;
+
     my $time = DateTime::Monotonic.new(:use-syscall);
     ok $time.defined, "Time object defined";
     ok $time ~~ DateTime::Monotonic, "Time object is proper type";
@@ -68,6 +98,8 @@ subtest 'Syscall', {
 }
 
 subtest 'Fallback', {
+    use DateTime::Monotonic;
+
     my $time = DateTime::Monotonic.new(:!use-syscall);
     ok $time.defined, "Time object defined";
     ok $time ~~ DateTime::Monotonic, "Time object is proper type";
