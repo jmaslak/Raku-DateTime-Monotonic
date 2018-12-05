@@ -1,6 +1,8 @@
 Revision history for DateTime-Monotonic
 
 {{$NEXT}}
+
+0.0.3  2018-12-04T23:38:10-07:00
     - Add procedural interface
 
 0.0.2  2018-12-04T22:19:55-07:00
