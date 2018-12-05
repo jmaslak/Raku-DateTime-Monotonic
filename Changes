@@ -1,6 +1,7 @@
 Revision history for DateTime-Monotonic
 
 {{$NEXT}}
+    - Allow procedural interface to be used without requiring exports.
 
 0.0.3  2018-12-04T23:38:10-07:00
     - Add procedural interface

@@ -108,11 +108,11 @@ method seconds(-->Numeric:D) {
 
 my DateTime::Monotonic:D $time = DateTime::Monotonic.new;
 
-sub monotonic-seconds(-->Numeric) is export(:monotonic-seconds, :ALL) {
+our sub monotonic-seconds(-->Numeric) is export(:monotonic-seconds, :ALL) {
     return $time.seconds;
 }
 
-sub monotonic-whole-seconds(-->Int) is export(:monotonic-whole-seconds, :ALL) {
+our sub monotonic-whole-seconds(-->Int) is export(:monotonic-whole-seconds, :ALL) {
     return monotonic-seconds.truncate;
 }
 
