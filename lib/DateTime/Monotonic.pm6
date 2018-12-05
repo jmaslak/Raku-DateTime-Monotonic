@@ -63,40 +63,43 @@ method seconds(-->Numeric:D) {
     # We normalize the time - the first call to seconds() will return
     # "time zero" or a value of 0.
     #
+    
+    state $lock = Lock.new;
+    $lock.protect: {
+        # Get the clock time, using syscall or the fallback if we can't use
+        # syscall.
+        my $val;
+        if $!testing-clock-time.defined {
+            $val = $!testing-clock-time;
+        } elsif $!use-syscall {
+            $val = syscall-seconds;
+        } else {
+            $val = datetime-seconds;
+        }
 
-    # Get the clock time, using syscall or the fallback if we can't use
-    # syscall.
-    my $val;
-    if $!testing-clock-time.defined {
-        $val = $!testing-clock-time;
-    } elsif $!use-syscall {
-        $val = syscall-seconds;
-    } else {
-        $val = datetime-seconds;
+        # Special case - first time through, so it's time zero
+        if ! $!last-time.defined {
+            $!offset = 0 - $val;  # Make this "Time Zero"
+            $!last-time = 0;
+            return 0;
+        }
+
+        # If time is not moving backwards, we're good!  Return the time.
+        if ($val + $!offset) ≥ $!last-time {
+            $!last-time = $val + $!offset;
+            return $!last-time;
+        }
+
+        # Time appears to have went backwards!
+        # That can't happen for monotonic time.  It's a bug somewhere.
+        if $!use-syscall { die("Monotonic ime appears to have moved backwards"); }
+
+        # We need to come up with a new offset.  Last time is unchanged (we
+        # hand back exactly the same time)
+        $!offset = $!last-time - $val;
+
+        return $!last-time
     }
-
-    # Special case - first time through, so it's time zero
-    if ! $!last-time.defined {
-        $!offset = 0 - $val;  # Make this "Time Zero"
-        $!last-time = 0;
-        return 0;
-    }
-
-    # If time is not moving backwards, we're good!  Return the time.
-    if ($val + $!offset) ≥ $!last-time {
-        $!last-time = $val + $!offset;
-        return $!last-time;
-    }
-
-    # Time appears to have went backwards!
-    # That can't happen for monotonic time.  It's a bug somewhere.
-    if $!use-syscall { die("Monotonic ime appears to have moved backwards"); }
-
-    # We need to come up with a new offset.  Last time is unchanged (we
-    # hand back exactly the same time)
-    $!offset = $!last-time - $val;
-
-    return $!last-time
 }
 
 =begin pod
@@ -168,6 +171,8 @@ previous C<seconds> call, this method will return the previous result
 calls).  If time is adjusted forward between calls, this will return a
 value that appears to have caused more time to elapse than actually has
 elapsed - but it will always be in a forward direction.
+
+This method is thread safe.
 
 =head1 BUGS
 
