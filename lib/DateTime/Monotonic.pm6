@@ -1,7 +1,7 @@
 use v6.c;
 
 #
-# Copyright © 2018 Joelle Maslak
+# Copyright © 2018-2020 Joelle Maslak
 # All Rights Reserved - See License
 #
 
@@ -256,31 +256,13 @@ While there are no known bugs, this module does not yet support non-Linux
 OSes fully.  It will provide non-reversing time on those systems, but the
 module could be improved by adding additional OS support.
 
-=head1 EXPRESSING APPRECIATION
-
-If this module makes your life easier, or helps make you (or your workplace)
-a ton of money, I always enjoy hearing about it!  My response when I hear that
-someone uses my module is to go back to that module and spend a little time on
-it if I think there's something to improve - it's motivating when you hear
-someone appreciates your work!
-
-I don't seek any money for this - I do this work because I enjoy it.  That
-said, should you want to show appreciation financially, few things would make
-me smile more than knowing that you sent a donation to the Gender Identity
-Center of Colorado (See L<http://giccolorado.org/>.  This organization
-understands TIMTOWTDI in life and, in line with that understanding, provides
-life-saving support to the transgender community.
-
-If you make any size donation to the Gender Identity Center, I'll add your name
-to "MODULE PATRONS" in this documentation!
-
 =head1 AUTHOR
 
 Joelle Maslak <jmaslak@antelope.net>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright © 2018 Joelle Maslak
+Copyright © 2018-2020 Joelle Maslak
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
