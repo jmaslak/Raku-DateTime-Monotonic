@@ -92,7 +92,7 @@ method seconds(-->Numeric:D) {
 
         # Time appears to have went backwards!
         # That can't happen for monotonic time.  It's a bug somewhere.
-        if $!use-syscall { die("Monotonic ime appears to have moved backwards"); }
+        if $!use-syscall { die("Monotonic time appears to have moved backwards"); }
 
         # We need to come up with a new offset.  Last time is unchanged (we
         # hand back exactly the same time)
