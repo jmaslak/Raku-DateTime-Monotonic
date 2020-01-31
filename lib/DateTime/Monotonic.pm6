@@ -5,7 +5,7 @@ use v6.c;
 # All Rights Reserved - See License
 #
 
-unit class DateTime::Monotonic:ver<0.0.5>:auth<cpan:JMASLAK>;
+unit class DateTime::Monotonic:ver<0.0.6>:auth<cpan:JMASLAK>;
 
 use NativeCall;
 
