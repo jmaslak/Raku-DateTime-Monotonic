@@ -5,7 +5,7 @@ use v6.c;
 # All Rights Reserved - See License
 #
 
-unit class DateTime::Monotonic:ver<0.0.6>:auth<zef:jmaslak>;
+unit class DateTime::Monotonic:ver<0.1.0>:auth<zef:jmaslak>;
 
 use NativeCall;
 

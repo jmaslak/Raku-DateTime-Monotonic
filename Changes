@@ -1,6 +1,8 @@
 Revision history for DateTime-Monotonic
 
 {{$NEXT}}
+
+0.1.0  2022-12-20T16:36:01Z
     - Move to Raku module ecosystem
 
 0.0.6  2020-01-31T06:33:34Z
