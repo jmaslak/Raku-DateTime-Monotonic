@@ -1,11 +1,11 @@
 use v6.c;
 
 #
-# Copyright © 2018-2020 Joelle Maslak
+# Copyright © 2018-2022 Joelle Maslak
 # All Rights Reserved - See License
 #
 
-unit class DateTime::Monotonic:ver<0.0.6>:auth<cpan:JMASLAK>;
+unit class DateTime::Monotonic:ver<0.0.6>:auth<zef:jmaslak>;
 
 use NativeCall;
 
@@ -262,7 +262,7 @@ Joelle Maslak <jmaslak@antelope.net>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright © 2018-2020 Joelle Maslak
+Copyright © 2018-2022 Joelle Maslak
 
 This library is free software; you can redistribute it and/or modify it under the Artistic License 2.0.
 
